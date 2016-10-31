@@ -1,15 +1,15 @@
-== Run the app ==
+# Run the app
 
 python main.py
 
 You can provide an alternative url by calling:
 
-python main.py --url=<alternative_url>
+python main.py --url=\<alternative_url\>
 
-== Run the tests ==
+# Run the tests
 
 python -m unittest
 
-== Dependencies ==
+# Dependencies
 
 See requirements.txt. Tested on Python 3.5 on Windows 10.

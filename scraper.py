@@ -3,10 +3,11 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-
 money_regex = '£(([0-9]*[.])?[0-9]+)'
 
+
 def scrape_products(url):
+    """Scrape main page (list of products)"""
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     items = soup.select('ul.productLister > li a')
@@ -14,7 +15,9 @@ def scrape_products(url):
     total_price = sum((r['unit_price'] for r in results))
     return {'results': results, 'total': round(total_price, 2)}
 
+
 def scrape_product(url):
+    """Scrape individual product page"""
     req_detail = requests.get(url)
     soup_detail = BeautifulSoup(req_detail.text, 'html.parser')
     unit_price = float(re.search(money_regex, soup_detail.find(class_='pricePerUnit').find(
